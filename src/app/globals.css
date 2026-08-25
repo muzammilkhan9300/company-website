@@ -1,0 +1,357 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DOMY AI — Premium Design System v2
+   Light Theme · Blue (#2563EB) + Purple (#7C3AED) Accents
+   Primary Text: #0F172A  |  Secondary: #475569  |  Muted: #64748B
+   ============================================================ */
+
+@layer base {
+  :root {
+    --color-pure-white:    #FFFFFF;
+    --color-off-white:     #F8FAFC;
+    --color-dark-section:  #0F172A;
+    --color-dark-text:     #0F172A;
+    --color-secondary-text:#475569;
+    --color-muted-text:    #64748B;
+    --color-brand-blue:    #2563EB;
+    --color-brand-purple:  #7C3AED;
+    --color-brand-indigo:  #4F46E5;
+    --color-border:        #E2E8F0;
+    --color-border-light:  #F1F5F9;
+
+    /* Legacy gold — kept so any missed references don't break */
+    --color-gold: #2563EB;
+  }
+
+  html {
+    /* Lenis handles smooth scrolling — keep native scroll instant to avoid double-smoothing jitter */
+    scroll-behavior: auto;
+    /* Prevent rubber-band scroll interference */
+    overscroll-behavior-y: none;
+    /* Native smooth scroll on all platforms */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #2563EB;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Global cursor pointer on all interactive elements */
+  a,
+  button,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  input[type="checkbox"],
+  input[type="radio"],
+  select,
+  summary,
+  [role="button"],
+  [role="tab"],
+  [role="link"],
+  [role="menuitem"],
+  [data-clickable],
+  .cursor-pointer {
+    cursor: pointer !important;
+  }
+
+  button:disabled,
+  input:disabled,
+  select:disabled,
+  [aria-disabled="true"] {
+    cursor: not-allowed !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+  }
+}
+
+body {
+  background-color: #FFFFFF;
+  color: #0F172A;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent overscroll bounce affecting perceived perf */
+  overscroll-behavior: none;
+  /* Faster text rendering — no sub-pixel penalty on body text */
+  text-rendering: optimizeSpeed;
+}
+
+/* ============================================================
+   TYPOGRAPHY SYSTEM — Manrope headings, Inter body
+   ============================================================ */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   BACKGROUND UTILITIES
+   ============================================================ */
+.bg-pureWhite     { background-color: #FFFFFF; }
+.bg-offWhite      { background-color: #F8FAFC; }
+.bg-darkSection   { background-color: #0F172A; }
+.bg-brand-blue    { background-color: #2563EB; }
+.bg-brand-purple  { background-color: #7C3AED; }
+.bg-brand-indigo  { background-color: #4F46E5; }
+
+/* Kept for backward compat — maps to brand-blue */
+.bg-gold { background-color: #2563EB; }
+
+/* ============================================================
+   TEXT COLOR UTILITIES
+   ============================================================ */
+.text-darkText    { color: #0F172A; }
+.text-secondary   { color: #475569; }
+.text-mutedText   { color: #64748B; }
+.text-pureWhite   { color: #FFFFFF; }
+.text-brand-blue  { color: #2563EB; }
+.text-brand-purple{ color: #7C3AED; }
+.text-brand-indigo{ color: #4F46E5; }
+
+/* Kept for backward compat */
+.text-gold { color: #2563EB; }
+
+/* ============================================================
+   BORDER UTILITIES
+   ============================================================ */
+.border-border-custom { border-color: #E2E8F0; }
+.border-brand-blue    { border-color: #2563EB; }
+.border-brand-purple  { border-color: #7C3AED; }
+
+/* Kept for backward compat */
+.border-gold { border-color: #2563EB; }
+
+/* ============================================================
+   GRADIENT UTILITIES
+   ============================================================ */
+.gradient-brand {
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+}
+.gradient-brand-text {
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-blue-soft {
+  background: linear-gradient(135deg, #EFF6FF 0%, #F5F3FF 100%);
+}
+
+/* ============================================================
+   FILL UTILITIES (SVG)
+   ============================================================ */
+.fill-gold        { fill: #2563EB; }
+.fill-brand-blue  { fill: #2563EB; }
+.fill-brand-purple{ fill: #7C3AED; }
+
+/* ============================================================
+   SHADOW UTILITIES
+   ============================================================ */
+.shadow-xs  { box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06); }
+.shadow-brand {
+  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.15), 0 1px 4px rgba(37, 99, 235, 0.10);
+}
+.shadow-brand-hover {
+  box-shadow: 0 8px 40px rgba(37, 99, 235, 0.22), 0 2px 8px rgba(37, 99, 235, 0.12);
+}
+
+/* ============================================================
+   FONT CLASS UTILITIES
+   ============================================================ */
+.font-display {
+  font-family: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-serif {
+  /* Updated — Manrope is now our "heading" font */
+  font-family: var(--font-manrope), "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-sans {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ============================================================
+   HERO BACKGROUND PATTERN
+   ============================================================ */
+.hero-grid-pattern {
+  background-image:
+    linear-gradient(to right, #E2E8F0 1px, transparent 1px),
+    linear-gradient(to bottom, #E2E8F0 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ============================================================
+   ANIMATION KEYFRAMES
+   ============================================================ */
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scroll-top-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-pulse-slow   { animation: pulse-slow 3s ease-in-out infinite; }
+.animate-float-badge  { animation: float-badge 4s ease-in-out infinite; }
+.animate-fade-in-up   { animation: fade-in-up 0.55s ease-out both; }
+.animate-scroll-top   { animation: scroll-top-in 0.3s ease-out both; }
+
+/* ============================================================
+   SCROLLBAR STYLING
+   ============================================================ */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #F8FAFC; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #2563EB; }
+
+/* ============================================================
+   TEXT SELECTION
+   ============================================================ */
+::selection {
+  background-color: rgba(37, 99, 235, 0.12);
+  color: #0F172A;
+}
+
+/* ============================================================
+   PROSE / RICH TEXT
+   ============================================================ */
+.rich-text h2 {
+  font-family: var(--font-manrope), "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #0F172A;
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+}
+.rich-text p {
+  color: #64748B;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  font-size: 0.9375rem;
+}
+
+/* ============================================================
+   DIVIDER UTILITY
+   ============================================================ */
+.brand-divider {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #2563EB, #7C3AED);
+  border-radius: 999px;
+}
+
+/* Kept for backward compat */
+.gold-divider {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #2563EB, #7C3AED);
+  border-radius: 999px;
+}
+
+/* ============================================================
+   BUTTON BASE STYLES
+   ============================================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  /* GPU-composited transitions — only transform + opacity + shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.btn-primary:hover {
+  box-shadow: 0 6px 24px rgba(37, 99, 235, 0.45);
+  transform: translateY(-1px) scale(1.02);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #0F172A;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 0.875rem 2rem;
+  border-radius: 9999px;
+  border: 1.5px solid #E2E8F0;
+  /* GPU-only properties */
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+.btn-secondary:hover {
+  border-color: #2563EB;
+  color: #2563EB;
+  background: rgba(37, 99, 235, 0.04);
+}
+
+/* ============================================================
+   PERFORMANCE UTILITIES
+   ============================================================ */
+
+/* Apply to sections below the fold for deferred layout/paint */
+.section-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
+}
+
+/* GPU hint for elements that animate transform/opacity */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* Stable image container — prevents CLS by reserving space */
+.img-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Smooth hover zoom — GPU composited */
+.hover-zoom {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.hover-zoom:hover {
+  transform: scale(1.04);
+}
+
+/* Anchor offset for fixed navbar */
+[id] {
+  scroll-margin-top: 88px;
+}
