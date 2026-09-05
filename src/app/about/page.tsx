@@ -3,6 +3,7 @@ import Image from "next/image";
 import FinalCTA from "@/components/FinalCTA";
 import { Bot, Zap, ShieldCheck, Cpu, Layers, CheckCircle2, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
 
 const BASE_URL = "https://brothersolutions.online";
 
@@ -61,9 +62,19 @@ const reasons = [
   "End-to-end service range under one roof",
 ];
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "About", item: `${BASE_URL}/about` },
+  ],
+};
+
 export default function AboutPage() {
   return (
     <div className="pt-28 pb-20">
+      <JsonLd data={breadcrumbSchema} />
 
       {/* ─── HERO ──────────────────────────────────────────── */}
       <section className="bg-pureWhite py-16 sm:py-24 border-b border-border-custom relative overflow-hidden">

@@ -15,6 +15,7 @@ import FeaturedProjectsSection from "@/components/FeaturedProjectsSection";
 import HomepageContactSection from "@/components/HomepageContactSection";
 import JsonLd from "@/components/JsonLd";
 import { siteConfig } from "@/config/site";
+import { testimonialsData } from "@/data/testimonialsData";
 
 const BASE_URL = "https://brothersolutions.online";
 
@@ -65,18 +66,23 @@ export const metadata: Metadata = {
   },
 };
 
+const averageRating =
+  testimonialsData.reduce((sum, t) => sum + t.rating, 0) / testimonialsData.length;
+
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   name: siteConfig.agencyName,
   url: BASE_URL,
   logo: `${BASE_URL}/logo.png`,
+  image: `${BASE_URL}/og-image.png`,
   description:
     "Brother Solutions is an international AI & software agency specializing in AI agents, automation, web development, and digital marketing.",
   email: siteConfig.email,
   telephone: siteConfig.phone,
   address: {
     "@type": "PostalAddress",
+    streetAddress: siteConfig.address,
     addressCountry: "PK",
   },
   sameAs: [
@@ -92,6 +98,17 @@ const organizationSchema = {
     contactType: "customer service",
     availableLanguage: ["English", "Urdu"],
   },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: averageRating.toFixed(1),
+    reviewCount: testimonialsData.length,
+  },
+  review: testimonialsData.map((t) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: t.clientName },
+    reviewRating: { "@type": "Rating", ratingValue: t.rating, bestRating: 5 },
+    reviewBody: t.quote,
+  })),
 };
 
 const websiteSchema = {

@@ -3,6 +3,7 @@ import ContactForm from "@/components/ContactForm";
 import FinalCTA from "@/components/FinalCTA";
 import { siteConfig } from "@/config/site";
 import { Phone, Mail, MessageSquare, ArrowUpRight } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
 
 const BASE_URL = "https://brothersolutions.online";
 
@@ -26,6 +27,15 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Contact", item: `${BASE_URL}/contact` },
+  ],
+};
+
 export default function ContactPage() {
   const whatsappUrl = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
     siteConfig.whatsappMessage
@@ -33,6 +43,7 @@ export default function ContactPage() {
 
   return (
     <div className="pt-28 pb-20">
+      <JsonLd data={breadcrumbSchema} />
       {/* HERO */}
       <section className="bg-pureWhite py-16 border-b border-border-custom text-center relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">

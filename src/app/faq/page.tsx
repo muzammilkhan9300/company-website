@@ -40,9 +40,18 @@ export default function FAQPage() {
     })),
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "FAQ", item: `${BASE_URL}/faq` },
+    ],
+  };
+
   return (
     <>
-      <JsonLd data={faqSchema} />
+      <JsonLd data={[breadcrumbSchema, faqSchema]} />
     <div className="pt-28 pb-20">
       {/* HERO */}
       <section className="bg-pureWhite py-16 border-b border-border-custom text-center relative overflow-hidden">

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { servicesData } from "@/data/servicesData";
 import ServiceCard from "@/components/ServiceCard";
 import FinalCTA from "@/components/FinalCTA";
+import JsonLd from "@/components/JsonLd";
 
 const BASE_URL = "https://brothersolutions.online";
 
@@ -25,9 +26,30 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Services", item: `${BASE_URL}/services` },
+  ],
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: servicesData.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: service.title,
+    url: `${BASE_URL}/services/${service.slug}`,
+  })),
+};
+
 export default function ServicesPage() {
   return (
     <div className="pt-28 pb-20">
+      <JsonLd data={[breadcrumbSchema, itemListSchema]} />
       {/* HERO */}
       <section className="bg-pureWhite py-16 border-b border-border-custom text-center relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">

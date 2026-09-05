@@ -4,6 +4,7 @@ import Link from "next/link";
 import { projectsData } from "@/data/projectsData";
 import FinalCTA from "@/components/FinalCTA";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
 
 const BASE_URL = "https://brothersolutions.online";
 
@@ -27,9 +28,30 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+    { "@type": "ListItem", position: 2, name: "Projects", item: `${BASE_URL}/projects` },
+  ],
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: projectsData.map((project, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: project.title,
+    url: `${BASE_URL}/projects/${project.slug}`,
+  })),
+};
+
 export default function ProjectsPage() {
   return (
     <div className="pt-28 pb-20">
+      <JsonLd data={[breadcrumbSchema, itemListSchema]} />
       {/* HERO */}
       <section className="bg-pureWhite py-16 border-b border-border-custom text-center relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
